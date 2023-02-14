@@ -1,21 +1,21 @@
 import java.util.Scanner;
 
 public class Main {
-	public static float tiempoRestante;
-	public static int numeroAlumnos = 0;
-	public static final float tiempoIntercambio = 30;
-	public static int listaAlumnos[];
-	public static int alumnoA[], alumnoB[], alumnoC[], alumnoD[];
-	public static int parejasPosibles = 0;
-	public static int rondas = 0;
-	public static boolean alumnosPares;
-	public static int paresPorRonda = 0;
-	public static int contadorPosiciones = 0;
-	public static int saltoRonda;
-	public static int contadorMultiuso = 0;
-	public static int tiempoTotalIntercambio;
-	public static int intercambios;
-	public static int tiempoPorRonda;
+	static float tiempoRestante;
+	static int numeroAlumnos = 0;
+	static final float tiempoIntercambio = 30;
+	static int listaAlumnos[];
+	static int alumnoA[], alumnoB[], alumnoC[], alumnoD[];
+	static int parejasPosibles = 0;
+	static int rondas = 0;
+	static boolean alumnosPares;
+	static int paresPorRonda = 0;
+	static int contadorPosiciones = 0;
+	static int saltoRonda;
+	static int contadorMultiuso = 0;
+	static int tiempoTotalIntercambio;
+	static int intercambios;
+	static int tiempoPorRonda;
 
 	public static void main(String[] args) {
 
