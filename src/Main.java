@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
+	
 	static float tiempoRestante;
 	static int numeroAlumnos = 0;
 	static final float tiempoIntercambio = 30;
@@ -23,7 +24,7 @@ public class Main {
 		
 		validarDatos();
 
-		// Título del programa
+		//Título del programa
 		System.out.println("-------------------");
 		System.out.println("- Todos Con Todos -");
 		System.out.println("-------------------");
@@ -47,28 +48,34 @@ public class Main {
 		calcularTiempo();
 
 		imprimirResultadoFinal();
-
 	}
 
 	static void completarArreglosDeOrdenacion() {
-		// Algoritmo Principal
-		Siguiente: for (int i = 0; i < alumnoA.length; i++) {
-			for (int j = 0; j < alumnoA.length; j++) {
-				if ((alumnoA[i] == alumnoC[j]) && (alumnoB[i] == alumnoD[j])) {
-					// TESTING
-					// System.out.println("(" + alumnoA[i] + ")(" + alumnoB[i] + ")");
-
+		/*
+		 * [Algoritmo Principal] 
+		 * Se comprueba si cada pareja de AB se encuentra en CD,
+		 * hasta que lo encuentra y vuelve a AB por otra pareja.
+		 * Si no lo encuentra en todo CD, se intentará ubicar con el 
+		 * algoritmo secundario. 
+		 */
+		Siguiente: 
+		for (int i = 0; i < alumnoA.length; i++) {
+			for (int j = 0; j < alumnoB.length; j++) {
+				if ((alumnoA[i] == alumnoC[j]) && (alumnoB[i] == alumnoD[j])) {	
+					//Si lo encuentra volvemos a AB por otra pareja.
 					continue Siguiente;
-
 				} else {
-					if (j == alumnoA.length - 1) {
-						// TESTING
-						// System.out.println("(x)(x)");
+					//Se comprueba si ya se recorrió todo AB.
+					if (j == alumnoA.length - 1) {						
 
-						// Algoritmo Secundario
-						BuscarEnCadaRonda: for (int k = 0; k < rondas; k++) {
+						/*
+						 * [Algoritmo Secundario] 
+						 * 
+						 */
+						BuscarEnCadaRonda: 
+						for (int k = 0; k < rondas; k++) {
 							for (int l = 0; l < paresPorRonda - 1; l++) {
-
+								
 								saltoRonda = paresPorRonda * k;
 								if (alumnoA[i] == alumnoC[l + saltoRonda] || alumnoB[i] == alumnoD[l + saltoRonda]
 										|| alumnoA[i] == alumnoD[l + saltoRonda]
