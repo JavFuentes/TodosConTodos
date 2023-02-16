@@ -60,6 +60,7 @@ public class Main {
 	}
 
 	static void completarArreglosDeOrdenacion() {
+		
 		/*
 		 * [Algoritmo Primario] 
 		 * Se comprueba si cada pareja de AB se encuentra en CD,
@@ -74,7 +75,7 @@ public class Main {
 					//Si lo encuentra volvemos a AB por otra pareja.
 					continue Siguiente;
 				} else {
-					//?
+					//Si ya se intentó agregar en cada posición de CD...
 					if (j == alumnoC.length - 1) {						
 
 						/*
@@ -279,11 +280,82 @@ public class Main {
 	}
 	
 	static void completarOrdenacionPorFuerzaBruta() {
-		Random random = new Random();
 		
-		for(int i = 0; i < alumnoAa.length; i++) {
-			//Testing - Arreglos con 1 PEPR
-			System.out.println("[" + alumnoAa[i] +"]["+ alumnoBb[i] + "]");
+		
+		//DC vuelve al punto donde solo existía una PEPR
+		for(int i = 0; i < alumnoAa.length; i++) {				
+			alumnoC[i] = alumnoAa[i];
+			alumnoD[i] = alumnoBb[i];		
 		}
+		
+		/*
+		 * [Algoritmo Primario] 
+		 * Se comprueba si cada pareja de AB se encuentra en CD,
+		 * hasta que lo encuentra y vuelve a AB por otra pareja.
+		 * Si no lo encuentra en todo CD, se intentará ubicar con el 
+		 * algoritmo secundario. 
+		 */
+		Siguiente: 
+		for (int i = 0; i < alumnoA.length; i++) {
+			for (int j = 0; j < alumnoB.length; j++) {
+				if ((alumnoA[i] == alumnoC[j]) && (alumnoB[i] == alumnoD[j])) {	
+					//Si lo encuentra volvemos a AB por otra pareja.
+					continue Siguiente;
+				} else {
+					//Si ya se intentó agregar en cada posición de CD...
+					if (j == alumnoC.length - 1) {						
+
+						/*
+						 * [Algoritmo Secundario] 
+						 * Intentará ubicar la pareja en una ronda aleatoria de CD.
+						 */
+						
+						rondaAleatoria();						
+						
+						BuscarEnCadaRonda: 
+						for (int k = 0; k < rondas; k++) {
+							for (int l = 0; l < paresPorRonda - 1; l++) {
+								
+								saltoRonda = paresPorRonda * k;
+								if (alumnoA[i] == alumnoC[l + saltoRonda] || alumnoB[i] == alumnoD[l + saltoRonda]
+										|| alumnoA[i] == alumnoD[l + saltoRonda]
+										|| alumnoB[i] == alumnoC[l + saltoRonda]) {
+
+									continue BuscarEnCadaRonda;
+
+								} else {
+									//?
+									if (l == paresPorRonda - 2) {
+										
+										/*
+										 * [Algoritmo Terciario] 
+										 * Este algoritmo ubicará en CD a las parejas restantes
+										 */
+										for (int m = 0; m < paresPorRonda; m++) {
+											//Se comprueba que la ubicación corresponda a un 0,0
+											if (alumnoC[m + saltoRonda] == alumnoD[m + saltoRonda]) {
+												alumnoC[m + saltoRonda] = alumnoA[i];
+												alumnoD[m + saltoRonda] = alumnoB[i];
+												continue Siguiente;
+											}
+										}
+									}
+								}
+							}
+						}
+						continue Siguiente;
+					}
+				}
+			}
+		}		
+		
+	}
+	
+	static void rondaAleatoria() {
+		Random random = new Random();
+				
+		int rondaAleatoria = 0; 
+		//Tal vez haya que sumarle 1
+		rondaAleatoria = random.nextInt(rondas);
 	}
 }
