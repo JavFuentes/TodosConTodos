@@ -282,6 +282,7 @@ public class Main {
 		Random random = new Random();
 		
 		for(int i = 0; i < alumnoAa.length; i++) {
+			//Testing - Arreglos con 1 PEPR
 			System.out.println("[" + alumnoAa[i] +"]["+ alumnoBb[i] + "]");
 		}
 	}
