@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+/**
+ * @author JavFuentes
+ *
+ */
 public class Main {
 	
 	static float tiempoRestante;
@@ -52,7 +56,7 @@ public class Main {
 
 	static void completarArreglosDeOrdenacion() {
 		/*
-		 * [Algoritmo Principal] 
+		 * [Algoritmo Primario] 
 		 * Se comprueba si cada pareja de AB se encuentra en CD,
 		 * hasta que lo encuentra y vuelve a AB por otra pareja.
 		 * Si no lo encuentra en todo CD, se intentará ubicar con el 
@@ -65,12 +69,12 @@ public class Main {
 					//Si lo encuentra volvemos a AB por otra pareja.
 					continue Siguiente;
 				} else {
-					//Se comprueba si ya se recorrió todo AB.
-					if (j == alumnoA.length - 1) {						
+					//?
+					if (j == alumnoC.length - 1) {						
 
 						/*
 						 * [Algoritmo Secundario] 
-						 * 
+						 * Este algoritmo intenta ubicar en CD a las parejas restantes
 						 */
 						BuscarEnCadaRonda: 
 						for (int k = 0; k < rondas; k++) {
@@ -84,10 +88,15 @@ public class Main {
 									continue BuscarEnCadaRonda;
 
 								} else {
+									//?
 									if (l == paresPorRonda - 2) {
-
-										// Algoritmo Terciario
+										
+										/*
+										 * [Algoritmo Terciario] 
+										 * Este algoritmo ubicará en CD a las parejas restantes
+										 */
 										for (int m = 0; m < paresPorRonda; m++) {
+											//Se comprueba que la ubicación corresponda a un 0,0
 											if (alumnoC[m + saltoRonda] == alumnoD[m + saltoRonda]) {
 												alumnoC[m + saltoRonda] = alumnoA[i];
 												alumnoD[m + saltoRonda] = alumnoB[i];
@@ -224,8 +233,8 @@ public class Main {
 	}
 
 	static void agregarUnaParejaExcluyentePorRonda() {
-		// Si el numero de alumnos es impar ira ubicando en cada ronda un alumno sin
-		// pareja distinto
+		// Si el numero de alumnos es impar, se irá ubicando en cada ronda un alumno sin
+		// pareja distinto.
 		if (!alumnosPares) {
 			for (int i = alumnoA.length - 1; i >= 0; i--) {
 				if (alumnoA[i] == 0 || alumnoB[i] == 0) {
@@ -237,8 +246,8 @@ public class Main {
 			contadorPosiciones = 0;
 		}
 
-		// Si el número de alumnos es par ira ubicando todas las combinaciones que
-		// incluyen el 1 en una ronda distinta
+		// Si el número de alumnos es par, se irá ubicando todas las combinaciones que
+		// incluyen el 1 en una ronda distinta.
 		if (alumnosPares) {
 			for (int i = 0; i < alumnoA.length; i++) {
 				if (alumnoA[i] == 1 || alumnoB[i] == 1) {
@@ -249,5 +258,9 @@ public class Main {
 			}
 			contadorPosiciones = 0;
 		}
+	}
+	
+	static void completarOrdenacionPorFuerzaBruta() {
+		
 	}
 }
