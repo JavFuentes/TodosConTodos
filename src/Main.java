@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -10,7 +11,7 @@ public class Main {
 	static int numeroAlumnos = 0;
 	static final float tiempoIntercambio = 30;
 	static int listaAlumnos[];
-	static int alumnoA[], alumnoB[], alumnoC[], alumnoD[];
+	static int alumnoA[], alumnoB[], alumnoAa[], alumnoBb[], alumnoC[], alumnoD[];
 	static int parejasPosibles = 0;
 	static int rondas = 0;
 	static boolean alumnosPares;
@@ -21,7 +22,7 @@ public class Main {
 	static int tiempoTotalIntercambio;
 	static int intercambios;
 	static int tiempoPorRonda;
-
+	
 	public static void main(String[] args) {
 
 		leerDatos();
@@ -52,6 +53,10 @@ public class Main {
 		calcularTiempo();
 
 		imprimirResultadoFinal();
+		
+		completarOrdenacionPorFuerzaBruta();
+		
+		
 	}
 
 	static void completarArreglosDeOrdenacion() {
@@ -134,6 +139,7 @@ public class Main {
 			System.out.println("[" + alumnoC[i] + "][" + alumnoD[i] + "]");
 			contadorMultiuso++;
 		}
+		System.out.println();
 	}
 
 	static void validarDatos() {
@@ -209,6 +215,10 @@ public class Main {
 		// rondas
 		alumnoC = new int[parejasPosibles];
 		alumnoD = new int[parejasPosibles];
+		
+		//Se define el largo de los arreglos que contienen una pareja excluyente por ronda
+		alumnoAa = new int[parejasPosibles];
+		alumnoBb = new int[parejasPosibles];
 	}
 
 	static void rellenarArreglosConParejasPosibles() {
@@ -240,6 +250,10 @@ public class Main {
 				if (alumnoA[i] == 0 || alumnoB[i] == 0) {
 					alumnoC[contadorPosiciones] = alumnoA[i];
 					alumnoD[contadorPosiciones] = alumnoB[i];
+					
+					alumnoAa[contadorPosiciones] = alumnoA[i];
+					alumnoBb[contadorPosiciones] = alumnoB[i];
+					
 					contadorPosiciones = contadorPosiciones + paresPorRonda;
 				}
 			}
@@ -253,6 +267,10 @@ public class Main {
 				if (alumnoA[i] == 1 || alumnoB[i] == 1) {
 					alumnoC[contadorPosiciones] = alumnoA[i];
 					alumnoD[contadorPosiciones] = alumnoB[i];
+					
+					alumnoAa[contadorPosiciones] = alumnoA[i];
+					alumnoBb[contadorPosiciones] = alumnoB[i];
+					
 					contadorPosiciones = contadorPosiciones + paresPorRonda;
 				}
 			}
@@ -261,6 +279,10 @@ public class Main {
 	}
 	
 	static void completarOrdenacionPorFuerzaBruta() {
+		Random random = new Random();
 		
+		for(int i = 0; i < alumnoAa.length; i++) {
+			System.out.println("[" + alumnoAa[i] +"]["+ alumnoBb[i] + "]");
+		}
 	}
 }
