@@ -315,7 +315,7 @@ public class Main {
 		 */
 		Siguiente: 
 		for (int i = 0; i < alumnoA.length; i++) {
-			for (int j = 0; j < alumnoB.length; j++) {
+			for (int j = 0; j < alumnoB.length; j++) {				
 				if ((alumnoA[i] == alumnoC[j]) && (alumnoB[i] == alumnoD[j])) {						
 					//Si lo encuentra volvemos a AB por otra pareja.
 					continue Siguiente;
@@ -335,7 +335,7 @@ public class Main {
 						
 						//Mientras no se haya comprobado con todas las rondas posibles...
 						BuscarEnCadaRonda: 
-						while(intentos < rondas) {
+						while(intentos < rondas+1) {
 							//Se intentará con una ronda al azar.
 							nuevoIntento = rondaAleatoria();
 							
@@ -374,10 +374,14 @@ public class Main {
 							} else {
 								continue BuscarEnCadaRonda;
 							}
-						}						
+						}	
+						calcularTiempo();			
+						imprimirResultadoFinal();
+						
 						probarNuevaCombinacion();
 						intentos = 0;
 						System.out.println("lol");
+												
 						continue Siguiente;
 					}
 				}
@@ -386,9 +390,11 @@ public class Main {
 	}
 	
 	static int rondaAleatoria() {
-		Random random = new Random();		
-		//Tal vez haya que sumarle 1
-		return random.nextInt(rondas);
+		int rondaAleatoria = 0;
+		Random random = new Random();	
+		rondaAleatoria =  random.nextInt(rondas);
+		System.out.println(rondaAleatoria);
+		return rondaAleatoria;
 	}
 	
 	static void probarNuevaCombinacion() {
